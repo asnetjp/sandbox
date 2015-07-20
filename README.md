@@ -13,3 +13,6 @@
 Forkせずそのままcloneして直接pushして大丈夫です。  
 pullreqによるレビューを行うのでmasterブランチには直接マージしないでください。
 branch名も特に指定しませんので適当でよいです。
+
+#ガイドライン
+https://github.com/asnetjp/sandbox/wiki
