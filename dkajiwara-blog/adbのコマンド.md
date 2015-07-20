@@ -1,9 +1,9 @@
-#ADBコマンド
+#開発中によく使用するadbコマンド
 開発部の梶原です。  
-ADBコマンドを使いこなしています？  
-adb install以外にも開発時に使えるコマンドがたくさんそろっていますので参考にしてくださいね。  
+adbコマンドを使いこなしていますか？  
+SDKの中にはadb install以外にも開発時に使えるコマンドがたくさんそろっていますので参考にしてみてください。  
 
-##接続している端末の確認
+##接続している端末の確認する
 ```
 dkajiwara:app dkajiwara$ adb devices
 List of devices attached
@@ -12,6 +12,7 @@ YT910ZK7PB	device
 ```
 
 ##特定の端末に接続する
+-sオプションで一覧で確認した端末にアクセス出来ます。
 ```
 $ adb -s YT910ZK7PB
 ```
@@ -26,7 +27,7 @@ $ adb install MyApp.apk
 ```
 $ adb install -r MyApp.apk
 ```
--rを付けることで、データは消されずに上書きインストール出来ます。
+-rオプションを付けることで、データは消されずに上書きインストール出来ます。
 
 ###アンインストール
 ```
@@ -44,12 +45,11 @@ $ adb shell logcat -v time
 # ログのクリア
 $ adb logcat -c
 ```
-下記のようにリダイレクトして適当なところに出力します
+下記のようにリダイレクトして適当なところに出力することが出来ます。
 ```
 $ adb shell logcat -v time > ~/Desktop/test.log
 ```
-##ADBの起動・停止
-ADBが何故か繋がらなくなる時によくやるやつですね  
+##ADBの起動・停止する
 ```
 # 起動
 $ adb start-server
@@ -63,10 +63,10 @@ $ adb shell am start -n com.sample.myapp/.MyAppActivity
 # 暗黙的Intentを投げる
 $ adb shell am start -a android.intent.action.VIEW -d http://xxxx.xxxx
 
-# サービスの起動
-$ adb shell am startservice ... # Intentの指定方法はActivityと同じ
-# ブロードキャストの送信
-$ adb shell am broadcast ... # Intentの指定方法はActivityと同じ
+# サービスの起動 (Intentの指定方法はActivityと同じ)
+$ adb shell am startservice ...
+# ブロードキャストの送信 (Intentの指定方法はActivityと同じ)
+$ adb shell am broadcast ...
 ```
 明示的Intentを投げるときは*-n アプリのパッケージ名/Activity*
 暗黙的Intentを投げるときは*-a Action名*
@@ -108,7 +108,7 @@ RTC_WAKEUP #6: Alarm{44cecb00 type 0 com.google.android.gms}
   type=0 whenElapsed=2667655216 when=+29d22h22m58s745ms window=0 repeatInterval=0 count=0
   operation=PendingIntent{42025980: PendingIntentRecord{4319de80 com.google.android.gms broadcastIntent}}
 ```
-##Contentproviderにアクセス
+##ContentProviderにアクセス
 ※Android4.1.1以上で使用可能です
 ```
 $ adb shell content query --uri content://media/external/images/media
@@ -120,7 +120,7 @@ $ adb shell pm list package
 ```
 
 いかがだったでしょうか、今回はAndroidのADBコマンドについてよく使うものをまとめてみました。
-使って試してみてください。
+今回紹介したもの以外にもまだあるので使って試してみてください。
 
 ##参考URL
 Android開発コマンド  
