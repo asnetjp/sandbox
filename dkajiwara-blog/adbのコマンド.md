@@ -1,11 +1,34 @@
 #開発中によく使用するadbコマンド
 開発部の梶原です。  
 adbコマンドを使いこなしていますか？  
+
 SDKの中にはadb install以外にも開発時に使えるコマンドがたくさんそろっていますので参考にしてみてください。  
 
-##接続している端末の確認する
+
+##adbのPathを通す
+まずは、ADBを使うためにパスを通しましょう。
+###Mac
+下記のように、.bash_profileを編集してパスを通してください。
 ```
-dkajiwara:app dkajiwara$ adb devices
+$ vi .bash_profile
+#ANDROIDのパス
+ANDROID_HOME=/Users/dkajiwara/android-sdk-macosx
+export PATH=$PATH:${ANDROID_HOME}/platform-tools
+
+$ source ~/.bashrc
+$ adb version
+Android Debug Bridge version 1.0.32
+```
+
+###Windows
+windowsを使用している方は下記等を参考にしてパスを通してください。  
+参考：Windows 8.1でadbコマンドを使えるようにする簡単な方法を紹介
+http://gadget-drawer.net/2014/05/windows-8-1-adb-command/
+
+
+##接続している端末を確認する
+```
+$ adb devices
 List of devices attached
 192.168.56.101:5555	device
 YT910ZK7PB	device
@@ -18,7 +41,7 @@ $ adb -s YT910ZK7PB
 ```
 
 ##APKのインストール・アップデート・アンインストール
-これはもう言わずもがなですね
+これはもう言わずもがなですが、端末にアプリをインストールするときに使用します。
 ###インストール
 ```
 $ adb install MyApp.apk
@@ -30,6 +53,7 @@ $ adb install -r MyApp.apk
 -rオプションを付けることで、データは消されずに上書きインストール出来ます。
 
 ###アンインストール
+アンインストールする際にはアプリのパッケージ名を指定します。
 ```
 $ adb uninstall com.sample.myapp
 ```
@@ -50,6 +74,7 @@ $ adb logcat -c
 $ adb shell logcat -v time > ~/Desktop/test.log
 ```
 ##ADBの起動・停止する
+adbがつながらなくなったり、端末を認識しなくなった場合に、一度adbを再起動させることで復帰出来る場合があります。
 ```
 # 起動
 $ adb start-server
