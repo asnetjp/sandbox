@@ -108,6 +108,8 @@ Packages:
 
 ```
 ##View階層の確認する
+アプリが複雑になってくるとコード追うのが大変でこの画面どこのViewだっけ？
+そんな時にすぐに確認できるので便利です
 ```shell
 $ adb shell dumpsys activity top
 TASK com.google.android.gm id=62
@@ -133,7 +135,7 @@ RTC_WAKEUP #6: Alarm{44cecb00 type 0 com.google.android.gms}
   type=0 whenElapsed=2667655216 when=+29d22h22m58s745ms window=0 repeatInterval=0 count=0
   operation=PendingIntent{42025980: PendingIntentRecord{4319de80 com.google.android.gms broadcastIntent}}
 ```
-##ContentProviderにアクセス
+##ContentProviderにqueryを投げる
 ※Android4.1.1以上で使用可能です
 ```
 $ adb shell content query --uri content://media/external/images/media
